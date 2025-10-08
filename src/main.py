@@ -1,5 +1,5 @@
 import logging
-from src.services.GenerateTask import generate_task
+from src.services.generate_task import generate_task
 
 logging.basicConfig(
     level=logging.INFO,

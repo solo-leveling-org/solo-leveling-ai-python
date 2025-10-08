@@ -4,9 +4,9 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnableLambda
 from langchain.output_parsers import PydanticOutputParser
-from src.prompt.TaskPrompt import SYSTEM_PROMPT
+from src.prompt.task_prompt import SYSTEM_PROMPT
 from dotenv import load_dotenv
-from src.model.GenerateTaskResponse import Task
+from src.model.generate_task_response import Task
 
 
 load_dotenv()
