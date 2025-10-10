@@ -17,7 +17,7 @@ def create_chat_client():
     parser = PydanticOutputParser(pydantic_object=Task)
 
     llm = ChatOpenAI(
-        model="qwen/qwen3-4b:free",
+        model="google/gemini-2.0-flash-lite-001",
         openai_api_base="https://openrouter.ai/api/v1",
         temperature=1,
         api_key=api_key
