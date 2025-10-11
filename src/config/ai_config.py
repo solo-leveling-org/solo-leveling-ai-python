@@ -7,6 +7,7 @@ from langchain.output_parsers import PydanticOutputParser
 from src.prompt.task_prompt import SYSTEM_PROMPT
 from dotenv import load_dotenv
 from src.model.generate_task_response import Task
+from src.config.config_loader import config
 
 
 load_dotenv()
@@ -16,12 +17,14 @@ api_key=os.getenv("OPENAI_ROUTER_KEY")
 def create_chat_client():
     parser = PydanticOutputParser(pydantic_object=Task)
 
+    model_config = config["ai"]["gemini"]
     llm = ChatOpenAI(
-        model="google/gemini-2.0-flash-lite-001",
-        openai_api_base="https://openrouter.ai/api/v1",
-        temperature=1,
-        api_key=api_key
-
+        model=model_config["name"],
+        openai_api_base=model_config["api_base"],
+        temperature=model_config["temperature"],
+        max_tokens=model_config.get("max_tokens", 1024),
+        timeout=model_config.get("timeout", 30),
+        api_key=os.getenv("OPENAI_ROUTER_KEY")
     )
 
     prompt = ChatPromptTemplate.from_messages([
