@@ -11,7 +11,7 @@ from src.config.config_loader import config
 
 
 load_dotenv()
-api_key=os.getenv("OPENAI_ROUTER_KEY")
+api_key = os.getenv("OPENAI_ROUTER_KEY")
 
 
 def create_chat_client():
@@ -24,15 +24,13 @@ def create_chat_client():
         temperature=model_config["temperature"],
         max_tokens=model_config.get("max_tokens", 1024),
         timeout=model_config.get("timeout", 30),
-        api_key=os.getenv("OPENAI_ROUTER_KEY")
+        api_key=os.getenv("OPENAI_ROUTER_KEY"),
     )
 
-    prompt = ChatPromptTemplate.from_messages([
-        ("system", SYSTEM_PROMPT),
-        ("user", "{input}")
-    ])
+    prompt = ChatPromptTemplate.from_messages(
+        [("system", SYSTEM_PROMPT), ("user", "{input}")]
+    )
 
     chain = prompt | llm | StrOutputParser() | RunnableLambda(lambda x: parser.parse(x))
 
     return chain
-
