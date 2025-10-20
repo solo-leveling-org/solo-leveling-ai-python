@@ -3,13 +3,16 @@ from src.services.generate_task import generate_task
 
 
 @pytest.mark.llm_integration
-@pytest.mark.parametrize("rarity, min_exp, max_exp, max_attr", [
-    ("COMMON", 10, 20, 2),
-    ("UNCOMMON", 30, 40, 4),
-    ("RARE", 50, 60, 6),
-    ("EPIC", 70, 80, 8),
-    ("LEGENDARY", 90, 100, 10)
-])
+@pytest.mark.parametrize(
+    "rarity, min_exp, max_exp, max_attr",
+    [
+        ("COMMON", 10, 20, 2),
+        ("UNCOMMON", 30, 40, 4),
+        ("RARE", 50, 60, 6),
+        ("EPIC", 70, 80, 8),
+        ("LEGENDARY", 90, 100, 10),
+    ],
+)
 def test_generate_task_with_all_rarities(rarity, min_exp, max_exp, max_attr):
     task = generate_task(["MENTAL_HEALTH"], rarity)
 
