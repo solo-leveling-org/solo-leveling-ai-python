@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "task-generator"
+version = "0.1.0"
+description = "A service that generates tasks using LLM"
+authors = [
+    "babymerlen <mmromadin@gmail.com>"
+]
+readme = "README.md"
+
+packages = [{ include = "src" }]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+langchain-openai = "^0.3.24"
+pydantic = "~2.11.10"
+python-dotenv = "~1.1.1"
+pytest = "~8.4.2"
+langchain = "^0.3.27"
+pyyaml = "~6.0.2"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
