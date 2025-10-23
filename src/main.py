@@ -19,7 +19,9 @@ def main():
         # Dishka создаёт REQUEST-scoped объект **внутри контекста**
         with container() as request_container:
             task_service = request_container.get(TaskService)
-            task = task_service.generate_task(["PHYSICAL_ACTIVITY", "MENTAL_HEALTH"], "EPIC")
+            task = task_service.generate_task(
+                ["PHYSICAL_ACTIVITY", "MENTAL_HEALTH"], "EPIC"
+            )
             logger.info(f"Generated task: {task}")
     except Exception as e:
         logger.error(f"Error: {e}", exc_info=True)

@@ -31,6 +31,8 @@ def create_chat_client():
         [("system", SYSTEM_PROMPT), ("user", "{input}")]
     )
 
-    chat_client = prompt | llm | StrOutputParser() | RunnableLambda(lambda x: parser.parse(x))
+    chat_client = (
+        prompt | llm | StrOutputParser() | RunnableLambda(lambda x: parser.parse(x))
+    )
 
     return chat_client

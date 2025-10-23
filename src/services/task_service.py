@@ -1,6 +1,7 @@
 from src.prompt.task_prompt import generate_task_user_prompt
 from src.model.generate_task_response import Task
 
+
 class TaskService:
     def __init__(self, chat_client):
         self.chat_client = chat_client
