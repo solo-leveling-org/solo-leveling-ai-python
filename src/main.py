@@ -16,7 +16,6 @@ def main():
     container = make_container(ConfigProvider(), LLMProvider(), TaskServiceProvider())
 
     try:
-        # Dishka создаёт REQUEST-scoped объект **внутри контекста**
         with container() as request_container:
             task_service = request_container.get(TaskService)
             task = task_service.generate_task(
