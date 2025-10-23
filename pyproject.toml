@@ -16,6 +16,7 @@ pydantic = "~2.11.10"
 python-dotenv = "~1.1.1"
 langchain = "^0.3.27"
 pyyaml = "~6.0.2"
+dishka = "^1.7.2"
 
 [tool.poetry.scripts]
 run = "src.main:main"
