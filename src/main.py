@@ -16,12 +16,11 @@ def main():
     container = make_container(ConfigProvider(), LLMProvider(), TaskServiceProvider())
 
     try:
-        with container() as request_container:
-            task_service = request_container.get(TaskService)
-            task = task_service.generate_task(
-                ["PHYSICAL_ACTIVITY", "MENTAL_HEALTH"], "EPIC"
-            )
-            logger.info(f"Generated task: {task}")
+        task_service = container.get(TaskService)
+        task = task_service.generate_task(
+            ["PHYSICAL_ACTIVITY", "MENTAL_HEALTH"], "EPIC"
+        )
+        logger.info(f"Generated task: {task}")
     except Exception as e:
         logger.error(f"Error: {e}", exc_info=True)
 

@@ -18,6 +18,6 @@ class LLMProvider(Provider):
 
 
 class TaskServiceProvider(Provider):
-    @provide(scope=Scope.REQUEST)
+    @provide(scope=Scope.APP)
     def get_task_service(self, chat_client: Runnable) -> TaskService:
         return TaskService(chat_client)
