@@ -6,7 +6,7 @@ from langchain_core.runnables import RunnableLambda, Runnable
 from langchain.output_parsers import PydanticOutputParser
 from src.prompt.task_prompt import SYSTEM_PROMPT
 from dotenv import load_dotenv
-from src.model.generate_task_response import Task
+from src.models.generate_task_response import Task
 from src.config.config_loader import config
 from pydantic import SecretStr
 
