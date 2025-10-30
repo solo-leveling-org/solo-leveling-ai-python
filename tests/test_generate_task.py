@@ -1,5 +1,7 @@
 import pytest
-from src.services.generate_task import generate_task
+from dishka import make_container
+from src.di.providers import ConfigProvider, LLMProvider, TaskServiceProvider
+from src.services.task_service import TaskService
 
 
 @pytest.mark.llm_integration
@@ -14,10 +16,13 @@ from src.services.generate_task import generate_task
     ],
 )
 def test_generate_task_with_all_rarities(rarity, min_exp, max_exp, max_attr):
-    task = generate_task(["MENTAL_HEALTH"], rarity)
+    container = make_container(ConfigProvider(), LLMProvider(), TaskServiceProvider())
+
+    with container() as request_container:
+        task_service = request_container.get(TaskService)
+        task = task_service.generate_task(["MENTAL_HEALTH"], rarity)
 
     assert min_exp <= task.experience <= max_exp
-
     assert task.currencyReward == task.experience // 2
 
     total_attrs = task.agility + task.strength + task.intelligence
