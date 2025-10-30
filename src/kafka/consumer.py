@@ -23,8 +23,8 @@ def register_consumers(broker: KafkaBroker):
             )
             task = await asyncio.to_thread(
                 task_service.generate_task,
-                topics = task_request.topics,
-                rarity = task_request.rarity,
+                topics=task_request.topics,
+                rarity=task_request.rarity,
             )
 
             logger.info(f"Generated task: {task}")
