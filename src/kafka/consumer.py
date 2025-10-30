@@ -1,4 +1,5 @@
 import logging
+import asyncio
 from faststream.kafka import KafkaBroker
 from dishka.integrations.faststream import inject, FromDishka
 from src.services.task_service import TaskService
@@ -20,8 +21,10 @@ def register_consumers(broker: KafkaBroker):
             logger.info(
                 f"Generating task for topics: {task_request.topics}, rarity: {task_request.rarity}"
             )
-            task = task_service.generate_task(
-                topics=task_request.topics, rarity=task_request.rarity
+            task = await asyncio.to_thread(
+                task_service.generate_task,
+                topics = task_request.topics,
+                rarity = task_request.rarity,
             )
 
             logger.info(f"Generated task: {task}")

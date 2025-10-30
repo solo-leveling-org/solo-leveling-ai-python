@@ -25,20 +25,20 @@ async def main():
         TaskServiceProvider(),
         FastStreamProvider(),
     )
+    async with container:
+        broker = await container.get(KafkaBroker)
+        logger.info("Kafka broker obtained from DI")
 
-    broker = await container.get(KafkaBroker)
-    logger.info("Kafka broker obtained from DI")
+        setup_dishka(container=container, broker=broker, auto_inject=True)
+        logger.info("Dishka integration configured")
 
-    setup_dishka(container=container, broker=broker, auto_inject=True)
-    logger.info("Dishka integration configured")
+        register_consumers(broker)
+        logger.info("Consumers registered")
 
-    register_consumers(broker)
-    logger.info("Consumers registered")
+        app = FastStream(broker)
+        logger.info("Microservice ready! Listening for task requests...")
 
-    app = FastStream(broker)
-    logger.info("Microservice ready! Listening for task requests...")
-
-    await app.run()
+        await app.run()
 
 
 if __name__ == "__main__":
