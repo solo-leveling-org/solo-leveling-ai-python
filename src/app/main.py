@@ -36,7 +36,7 @@ async def main():
     logger.info("Consumers registered")
 
     app = FastStream(broker)
-    logger.info("icroservice ready! Listening for task requests...")
+    logger.info("Microservice ready! Listening for task requests...")
 
     await app.run()
 

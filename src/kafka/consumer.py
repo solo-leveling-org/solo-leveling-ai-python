@@ -12,7 +12,7 @@ def register_consumers(broker: KafkaBroker):
     @inject
     async def handle_task_request(
         task_request: TaskRequest,
-        task_service: FromDishka[TaskService],  # ← Правильный способ!
+        task_service: FromDishka[TaskService],
     ):
         logger.info(f"Received task request from microservice X: {task_request}")
 
