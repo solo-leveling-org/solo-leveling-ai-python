@@ -21,7 +21,7 @@ dishka = "1.7.2"
 pydantic = "^2.12.3"
 
 [tool.poetry.scripts]
-run = "src.main:main"
+run-service = "src.app.main:main"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
