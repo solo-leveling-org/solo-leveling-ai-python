@@ -19,13 +19,13 @@ logger = logging.getLogger(__name__)
 async def main():
     logger.info("🚀 Starting Task Generator Microservice...")
 
-    container = make_async_container(
+    container_factory= make_async_container(
         ConfigProvider(),
         LLMProvider(),
         TaskServiceProvider(),
         FastStreamProvider(),
     )
-    async with container:
+    async with container_factory() as container:
         broker = await container.get(KafkaBroker)
         logger.info("Kafka broker obtained from DI")
 
